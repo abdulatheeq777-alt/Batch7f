@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Subscribe</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -22,14 +21,13 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: 'DM Sans', sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       color: var(--text);
       padding: 24px;
       background-image:
         radial-gradient(ellipse 80% 60% at 70% 10%, rgba(200,240,78,0.07) 0%, transparent 60%),
         radial-gradient(ellipse 50% 50% at 10% 90%, rgba(200,240,78,0.04) 0%, transparent 50%);
     }
-
     .card {
       background: var(--card);
       border: 1px solid var(--border);
@@ -37,14 +35,7 @@
       padding: 56px 48px;
       max-width: 480px;
       width: 100%;
-      animation: fadeUp 0.6s ease both;
     }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
     .badge {
       display: inline-flex;
       align-items: center;
@@ -60,7 +51,6 @@
       border-radius: 100px;
       margin-bottom: 28px;
     }
-
     .badge::before {
       content: '';
       width: 6px;
@@ -69,25 +59,21 @@
       background: var(--accent);
       animation: pulse 2s ease infinite;
     }
-
     @keyframes pulse {
       0%, 100% { opacity: 1; }
       50% { opacity: 0.3; }
     }
-
     h1 {
-      font-family: 'Playfair Display', serif;
       font-size: clamp(28px, 5vw, 36px);
       line-height: 1.2;
       margin-bottom: 14px;
       letter-spacing: -0.01em;
+      font-weight: 700;
     }
-
     h1 em {
       font-style: italic;
       color: var(--accent);
     }
-
     .subtitle {
       color: var(--muted);
       font-size: 15px;
@@ -95,7 +81,6 @@
       line-height: 1.6;
       margin-bottom: 36px;
     }
-
     .perks {
       list-style: none;
       display: flex;
@@ -103,7 +88,6 @@
       gap: 10px;
       margin-bottom: 36px;
     }
-
     .perks li {
       display: flex;
       align-items: center;
@@ -111,21 +95,18 @@
       font-size: 14px;
       color: #ccc;
     }
-
     .perks li::before {
       content: '✦';
       color: var(--accent);
       font-size: 10px;
       flex-shrink: 0;
     }
-
     .input-group {
       display: flex;
       flex-direction: column;
       gap: 12px;
       margin-bottom: 16px;
     }
-
     input[type="email"],
     input[type="text"] {
       width: 100%;
@@ -134,19 +115,16 @@
       border-radius: var(--radius);
       padding: 14px 18px;
       color: var(--text);
-      font-family: 'DM Sans', sans-serif;
+      font-family: inherit;
       font-size: 15px;
       outline: none;
       transition: border-color 0.2s, box-shadow 0.2s;
     }
-
     input::placeholder { color: var(--muted); }
-
     input:focus {
       border-color: rgba(200,240,78,0.5);
       box-shadow: 0 0 0 3px rgba(200,240,78,0.07);
     }
-
     button {
       width: 100%;
       background: var(--accent);
@@ -154,22 +132,19 @@
       border: none;
       border-radius: var(--radius);
       padding: 15px 18px;
-      font-family: 'DM Sans', sans-serif;
+      font-family: inherit;
       font-size: 15px;
-      font-weight: 500;
+      font-weight: 600;
       cursor: pointer;
-      transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
+      transition: transform 0.15s, box-shadow 0.15s;
       position: relative;
       overflow: hidden;
     }
-
     button:hover {
       transform: translateY(-1px);
       box-shadow: 0 8px 24px rgba(200,240,78,0.25);
     }
-
     button:active { transform: translateY(0); }
-
     button.loading::after {
       content: '';
       position: absolute;
@@ -177,12 +152,10 @@
       background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
       animation: shimmer 1s infinite;
     }
-
     @keyframes shimmer {
       from { transform: translateX(-100%); }
       to   { transform: translateX(100%); }
     }
-
     .fine {
       text-align: center;
       font-size: 12px;
@@ -190,13 +163,11 @@
       margin-top: 16px;
       line-height: 1.5;
     }
-
     .fine a {
       color: var(--muted);
       text-decoration: underline;
       text-underline-offset: 2px;
     }
-
     .success {
       display: none;
       flex-direction: column;
@@ -205,7 +176,6 @@
       gap: 16px;
       padding: 24px 0 8px;
     }
-
     .success-icon {
       width: 56px;
       height: 56px;
@@ -217,34 +187,28 @@
       justify-content: center;
       font-size: 22px;
     }
-
     .success h2 {
-      font-family: 'Playfair Display', serif;
       font-size: 22px;
+      font-weight: 700;
     }
-
     .success p {
       color: var(--muted);
       font-size: 14px;
       line-height: 1.6;
     }
-
     .divider {
       height: 1px;
       background: var(--border);
       margin: 36px 0;
     }
-
     .social-proof {
       display: flex;
       align-items: center;
       gap: 12px;
     }
-
     .avatars {
       display: flex;
     }
-
     .avatar {
       width: 28px;
       height: 28px;
@@ -257,17 +221,13 @@
       justify-content: center;
       font-size: 11px;
     }
-
     .avatar:first-child { margin-left: 0; }
-
     .proof-text {
       font-size: 13px;
       color: var(--muted);
       line-height: 1.4;
     }
-
     .proof-text strong { color: var(--text); font-weight: 500; }
-
     @media (max-width: 480px) {
       .card { padding: 36px 24px; }
     }
@@ -278,29 +238,22 @@
 <div class="card">
   <div id="form-view">
     <div class="badge">Newsletter</div>
-
     <h1>Ideas worth<br/><em>thinking about.</em></h1>
     <p class="subtitle">Weekly essays on design, technology, and the future — no noise, no filler. Just the good stuff.</p>
-
     <ul class="perks">
       <li>One thoughtful essay every Tuesday</li>
-      <li>Curated links & tools worth your time</li>
-      <li>Early access to new work & projects</li>
+      <li>Curated links &amp; tools worth your time</li>
+      <li>Early access to new work &amp; projects</li>
     </ul>
-
     <div class="input-group">
       <input type="text" id="name" placeholder="First name" autocomplete="given-name"/>
       <input type="email" id="email" placeholder="your@email.com" autocomplete="email"/>
     </div>
-
     <button id="submit-btn" onclick="handleSubmit()">Subscribe for free →</button>
-
     <p class="fine">No spam, ever. Unsubscribe in one click at any time.<br/>
       By subscribing you agree to our <a href="#">Privacy Policy</a>.
     </p>
-
     <div class="divider"></div>
-
     <div class="social-proof">
       <div class="avatars">
         <div class="avatar" style="background:#3d4a2e;">🧑</div>
@@ -339,7 +292,6 @@
       document.getElementById('form-view').style.display = 'none';
       const s = document.getElementById('success-view');
       s.style.display = 'flex';
-      s.style.animation = 'fadeUp 0.5s ease both';
     }, 1400);
   }
 
