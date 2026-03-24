@@ -141,7 +141,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       border-color: rgba(200,240,78,0.5);
       box-shadow: 0 0 0 3px rgba(200,240,78,0.07);
     }
-    button {
+    button[type="submit"] {
       width: 100%;
       background: var(--accent);
       color: #0e0e0e;
@@ -153,25 +153,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       font-weight: 600;
       cursor: pointer;
       transition: transform 0.15s, box-shadow 0.15s;
-      position: relative;
-      overflow: hidden;
     }
-    button:hover {
+    button[type="submit"]:hover {
       transform: translateY(-1px);
       box-shadow: 0 8px 24px rgba(200,240,78,0.25);
     }
-    button:active { transform: translateY(0); }
-    button.loading::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-      animation: shimmer 1s infinite;
-    }
-    @keyframes shimmer {
-      from { transform: translateX(-100%); }
-      to   { transform: translateX(100%); }
-    }
+    button[type="submit"]:active { transform: translateY(0); }
     .fine {
       text-align: center;
       font-size: 12px;
@@ -183,34 +170,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       color: var(--muted);
       text-decoration: underline;
       text-underline-offset: 2px;
-    }
-    .success {
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      gap: 16px;
-      padding: 24px 0 8px;
-    }
-    .success-icon {
-      width: 56px;
-      height: 56px;
-      background: rgba(200,240,78,0.1);
-      border: 1px solid rgba(200,240,78,0.25);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 22px;
-    }
-    .success h2 {
-      font-size: 22px;
-      font-weight: 700;
-    }
-    .success p {
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.6;
     }
     .divider {
       height: 1px;
@@ -256,68 +215,38 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
 <div class="card">
-  <div id="form-view">
-    <div class="badge">Newsletter</div>
-    <h1>Ideas worth<br/><em>thinking about.</em></h1>
-    <p class="subtitle">Weekly essays on design, technology, and the future — no noise, no filler. Just the good stuff.</p>
-    <ul class="perks">
-      <li>One thoughtful essay every Tuesday</li>
-      <li>Curated links &amp; tools worth your time</li>
-      <li>Early access to new work &amp; projects</li>
-    </ul>
+  <div class="badge">Newsletter</div>
+  <h1>Ideas worth<br/><em>thinking about.</em></h1>
+  <p class="subtitle">Weekly essays on design, technology, and the future — no noise, no filler. Just the good stuff.</p>
+  <ul class="perks">
+    <li>One thoughtful essay every Tuesday</li>
+    <li>Curated links &amp; tools worth your time</li>
+    <li>Early access to new work &amp; projects</li>
+  </ul>
+
+  <form name="subscribe" method="POST" action="/thank-you">
     <div class="input-group">
-      <input type="text" id="name" placeholder="First name" autocomplete="given-name"/>
-      <input type="email" id="email" placeholder="your@email.com" autocomplete="email"/>
+      <input type="text" name="first_name" placeholder="First name" autocomplete="given-name" required/>
+      <input type="email" name="email" placeholder="your@email.com" autocomplete="email" required/>
     </div>
-    <button id="submit-btn" onclick="handleSubmit()">Subscribe for free →</button>
+    <button type="submit">Subscribe for free →</button>
     <p class="fine">No spam, ever. Unsubscribe in one click at any time.<br/>
       By subscribing you agree to our <a href="#">Privacy Policy</a>.
     </p>
-    <div class="divider"></div>
-    <div class="social-proof">
-      <div class="avatars">
-        <div class="avatar" style="background:#3d4a2e;">🧑</div>
-        <div class="avatar" style="background:#2e3d4a;">👩</div>
-        <div class="avatar" style="background:#4a2e3d;">🧔</div>
-        <div class="avatar" style="background:#2e4a3d;">👨</div>
-      </div>
-      <p class="proof-text"><strong>2,400+ readers</strong> already subscribed.<br/>Join them this week.</p>
-    </div>
-  </div>
+  </form>
 
-  <div class="success" id="success-view">
-    <div class="success-icon">✦</div>
-    <h2>You're in!</h2>
-    <p>Welcome aboard. Your first issue arrives this Tuesday — keep an eye on your inbox (and check spam just in case).</p>
+  <div class="divider"></div>
+
+  <div class="social-proof">
+    <div class="avatars">
+      <div class="avatar" style="background:#3d4a2e;">🧑</div>
+      <div class="avatar" style="background:#2e3d4a;">👩</div>
+      <div class="avatar" style="background:#4a2e3d;">🧔</div>
+      <div class="avatar" style="background:#2e4a3d;">👨</div>
+    </div>
+    <p class="proof-text"><strong>2,400+ readers</strong> already subscribed.<br/>Join them this week.</p>
   </div>
 </div>
 
-<script>
-  function handleSubmit() {
-    const btn = document.getElementById('submit-btn');
-    const email = document.getElementById('email').value.trim();
-
-    if (!email || !email.includes('@')) {
-      document.getElementById('email').focus();
-      document.getElementById('email').style.borderColor = 'rgba(255,80,80,0.5)';
-      setTimeout(() => document.getElementById('email').style.borderColor = '', 1500);
-      return;
-    }
-
-    btn.textContent = 'Subscribing…';
-    btn.classList.add('loading');
-    btn.disabled = true;
-
-    setTimeout(() => {
-      document.getElementById('form-view').style.display = 'none';
-      const s = document.getElementById('success-view');
-      s.style.display = 'flex';
-    }, 1400);
-  }
-
-  document.getElementById('email').addEventListener('keydown', e => {
-    if (e.key === 'Enter') handleSubmit();
-  });
-</script>
 </body>
 </html>
